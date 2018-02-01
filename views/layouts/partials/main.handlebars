@@ -1,1 +1,50 @@
 {{!-- main.handlebars --}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--jQuery Link-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <!--CSS Style Sheet-->
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+
+    <title>Fit To Scrape!</title>
+</head>
+
+<body>
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">VAG</a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/saved">Saved</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-content">
+            <span class="nav-title">Fit-To-Scrape</span>
+            <a class="btn-floating btn-large halfway-fab waves-effect waves-light deep-purple darken-1">Scrape
+                <i class="material-icons">add</i>
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+    </nav>
+{{{ body }}}
+
+{{!-- Externam JS Link --}}
