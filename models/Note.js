@@ -1,6 +1,5 @@
 // Note.js
 
-
 // require mongoose
 var mongoose = require("mongoose");
 
