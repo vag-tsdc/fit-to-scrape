@@ -25,15 +25,36 @@ var port = process.env.PORT || 3000
 var app = express();
 
 // Use morgan and body parser
+app.use(logger("dev"));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
-// Set Handle Bars
+// Make public a static dir
+app.use(express.static("public"));
 
-// Database Config with Mongoose
+// Set Handlebars.
+var exphbs = require("express-handlebars");
 
-// 
+app.engine("handlebars", exphbs({
+    defaultLayout: "main",
+    partialsDir: path.join(__dirname, "/views/layouts/partials")
+}));
+app.set("view engine", "handlebars");
 
-// mongoose errors
+// Database configuration with mongoose
+mongoose.connect("mongodb://heroku_jmv816f9:5j1nd4taq42hi29bfm5hobeujd@ds133192.mlab.com:33192/heroku_jmv816f9");
+//mongoose.connect("mongodb://localhost/mongoscraper");
+var db = mongoose.connection;
 
-// Log Sucess Message once logged into mongoose db
+// Show any mongoose errors
+db.on("error", function(error) {
+  console.log("Mongoose Error: ", error);
+});
+
+// Once logged in to the db through mongoose, log a success message
+db.once("open", function() {
+  console.log("Mongoose connection successful.");
+});
 
 // Routes
