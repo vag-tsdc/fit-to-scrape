@@ -51,12 +51,13 @@ $(".delete").on("click", function () {
 
 //  handle Save Note button
 $(".saveNote").on("click", function () {
-
-
-
-
-
-
+    var thisId = $(this).attr("data-id");
+    $.ajax({
+        method: "POST",
+        url: "/articles/save/" + thisId
+    }).done(function(data) {
+        window.location = "/"
+    })
 });
 
 
