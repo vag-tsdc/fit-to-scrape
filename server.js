@@ -123,6 +123,9 @@ app.get("/scrape", function (req, res) {
     // Tell the browser that we finished scraping the text
 });
 
+
+
+
 // Listen on port
 app.listen(port, function () {
     console.log("App running on port " + port);

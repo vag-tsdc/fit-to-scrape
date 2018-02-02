@@ -17,21 +17,34 @@ $(".navbar-nav li").click(function () {
     $(this).addClass("active");
 });
 
+// Handle the Read More on click
+$(".more").click(function () {
+    console.log(this);
+        $(".more").removeClass("active");
+        $(this).addClass("active");
+});
+
 
 //  handle Save Article button
 $(".save").on("click", function () {
-
-
-
+    var thisId = $(this).attr("data-id");
+    $.ajax({
+        method: "POST",
+        url: "/articles/save/" + thisId
+    }).done(function(data) {
+        window.location = "/"
+    })
 });
 
 //  handle Delete Article button
 $(".delete").on("click", function () {
-
-
-
-
-
+    var thisId = $(this).attr("data-id");
+    $.ajax({
+        method: "POST",
+        url: "/articles/delete/" + thisId
+    }).done(function(data) {
+        window.location = "/saved"
+    })
 });
 
 

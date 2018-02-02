@@ -1,34 +1,33 @@
 <!-- home.handlebars -->
 
 <div class="container">
-    <div class="col-md-12 jumbotron">
+    <div class="col-md-12">
         <div class="text-center">
-            <h1> Fit-to-Scrape: Daily Horoscope</h1>
+            <h1> Fit-to-Scrape: </h1>
+            <h3>Daily Horoscope</h3>
         </div>
 
     </div>
-    <div class="col-md-12">
-        {{#if article}}
-            {{#each article}}
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>{{this.title}}</h4>
-                </div>
-                <div class="panel-body">
-                    <p> {{this.summary}}</p>
-                    <a href={{this.link}} target="_blank">{{this.link}}</a>
-                    <br><br>
+    <div class="row">
+        <div class="col s12 m6">
+            {{#if article}} {{#each article}}
+            <div class="card deep-purple darken-3">
+                <div class="card-content">
+                    <span class="card-title white-text">{{this.title}}</span>
+                    <p class="deep-purple-text text-lighten-5"> {{this.summary}}</p>
+                    <br>
+                    <a href={{this.link}} type="button" class="btn btn-success more" id="more">Read More</a>
                     <button type="button" class="btn btn-success save" data-id={{this._id}}>Save Article</button>
                 </div>
+                
             </div>
-            {{/each}}
-        {{else}}
-        <div class="panel panel-default">
-            <div class="panel-body">
-            <h4>Uh Oh. <br>
-            Looks like you need to scrape !</h4>
+            {{/each}} {{else}}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Uh Oh.
+                        <br> Looks like you need to scrape !</h4>
+                </div>
             </div>
-         </div>
-        {{/if}}
+            {{/if}}
+        </div>
     </div>
-</div>
