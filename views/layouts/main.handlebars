@@ -16,6 +16,7 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
+
     <!--CSS Style Sheet-->
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
 
@@ -43,9 +44,10 @@
             </a>
         </div>
     </nav>
-{{{ body }}}
+    {{{ body }}} {{!-- Externam JS Link --}} {{!--
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script> --}}
+    <script src="/assets/js/app.js"></script>
+</body>
 
-{{!-- Externam JS Link --}}
-  <script src="/assets/js/app.js"></script>
-    </body>
 </html>

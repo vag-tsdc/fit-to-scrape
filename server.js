@@ -19,7 +19,7 @@ var cheerio = require("cheerio");
 mongoose.Promise = Promise;
 
 //Define port
-var port = process.env.PORT || 3030
+var port = process.env.PORT || 3000
 
 // Initialize Express
 var app = express();
@@ -43,8 +43,8 @@ app.engine("handlebars", exphbs({
 app.set("view engine", "handlebars");
 
 // Database configuration with mongoose
-// mongoose.connect("mongodb://localhost/mongoscraper");
-mongoose.connect("mongodb://heroku_lm01b396:lsp58euhcbs934dm3500qej9vb@ds121268.mlab.com:21268/heroku_lm01b396");
+mongoose.connect("mongodb://localhost/mongoscraper");
+// mongoose.connect("mongodb://heroku_lm01b396:lsp58euhcbs934dm3500qej9vb@ds121268.mlab.com:21268/heroku_lm01b396");
 var db = mongoose.connection;
 
 // Show any mongoose errors

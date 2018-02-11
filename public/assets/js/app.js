@@ -1,7 +1,16 @@
 // app.js
+
 $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal-trigger').modal();
+    $('#modal').modal();
+// modalActions = new EventEmitter <string|MaterializeAction>();
+ 
+ function openModal() {
+    this.modalActions.emit({action:"modal",params:['open']});
+  }
+ function closeModal() {
+    this.modalActions.emit({action:"modal",params:['close']});
+  }
   });
 
 
@@ -13,6 +22,7 @@ $(document).ready(function(){
     // $('.modal-trigger').click(function () {
     //     console.log(this.class);
     // });
+
 
 // Scrape Button
 $("#scrape").on("click", function () {
@@ -64,10 +74,31 @@ $(".delete").on("click", function () {
     })
 });
 
-
-
 //  handle Save Note button
 $(".saveNote").on("click", function() {
+    var thisId = $(this).attr("data-id");
+    if (!$("#noteText" + thisId).val()) {
+        alert("please enter a note to save")
+    }else {
+      $.ajax({
+            method: "POST",
+            url: "/notes/save/" + thisId,
+            data: {
+              text: $("#noteText" + thisId).val()
+            }
+          }).done(function(data) {
+              // Log the response
+              console.log(data);
+              // Empty the notes section
+              $("#noteText" + thisId).val("");
+              $(".modalNote").modal("hide");
+              window.location = "/saved"
+          });
+    }
+});
+
+//  handle Add Note button
+$(".addNote").on("click", function() {
     var thisId = $(this).attr("data-id");
     if (!$("#noteText" + thisId).val()) {
         alert("please enter a note to save")
@@ -94,12 +125,16 @@ $(".saveNote").on("click", function() {
 
 //  handle Delete Note button
 $(".deleteNote").on("click", function () {
-
-
-
-
-
-
+    var noteId = $(this).attr("data-note-id");
+    var articleId = $(this).attr("data-article-id");
+    $.ajax({
+        method: "DELETE",
+        url: "/notes/delete/" + noteId + "/" + articleId
+    }).done(function(data) {
+        console.log(data)
+        $(".modalNote").modal("hide");
+        window.location = "/saved"
+    })
 });
 
 
