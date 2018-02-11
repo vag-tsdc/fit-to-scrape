@@ -1,4 +1,18 @@
 // app.js
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').modal();
+  });
+
+
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    // $('.modal').click(function () {
+    //     console.log(this);
+    // });
+
+    // $('.modal-trigger').click(function () {
+    //     console.log(this.class);
+    // });
 
 // Scrape Button
 $("#scrape").on("click", function () {
@@ -30,11 +44,14 @@ $(".save").on("click", function () {
     var thisId = $(this).attr("data-id");
     $.ajax({
         method: "POST",
-        url: "/articles/save/" + thisId
+        url: "/articles/save/"  + thisId
     }).done(function(data) {
         window.location = "/"
     })
+    console.log("Saved : " + this.title)
 });
+
+
 
 //  handle Delete Article button
 $(".delete").on("click", function () {
@@ -50,15 +67,28 @@ $(".delete").on("click", function () {
 
 
 //  handle Save Note button
-$(".saveNote").on("click", function () {
+$(".saveNote").on("click", function() {
     var thisId = $(this).attr("data-id");
-    $.ajax({
-        method: "POST",
-        url: "/articles/save/" + thisId
-    }).done(function(data) {
-        window.location = "/"
-    })
+    if (!$("#noteText" + thisId).val()) {
+        alert("please enter a note to save")
+    }else {
+      $.ajax({
+            method: "POST",
+            url: "/notes/save/" + thisId,
+            data: {
+              text: $("#noteText" + thisId).val()
+            }
+          }).done(function(data) {
+              // Log the response
+              console.log(data);
+              // Empty the notes section
+              $("#noteText" + thisId).val("");
+              $(".modalNote").modal("hide");
+              window.location = "/saved"
+          });
+    }
 });
+
 
 
 
