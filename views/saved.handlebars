@@ -9,20 +9,17 @@
     </div>
     <div class="row">
         <div class="col s12 m6">
-            {{#if article}} 
-            {{#each article}}
+            {{#if article}} {{#each article}}
             <div class="card deep-purple darken-3">
                 <div class="card-content">
-                    <span class="card-title white-text">
-                        {{this.title}}</span>
-                    <p class="deep-purple-text text-lighten-5"> 
-                        {{this.summary}}</p>
+                    <span class="card-title white-text">{{this.title}}</span>
+                    <p class="deep-purple-text text-lighten-5"> {{this.summary}}</p>
                     <br>
                     <a href={{this.link}} type="button" class="btn btn-success more" id="more">Read More</a>
                     <br>
                     <br>
-                     <button data-target="modal1" class="btn waves-effect waves-light btn addNote modal-trigger" data-toggle="modal" data-target="#noteModal{{this._id}}" data-id={{this._id}}>Add a Note</button>
-                    <button type="button" class="btn btn-danger delete" data-id={{this._id}}>Delete</button>
+                    <a href="#modal" class="waves-effect waves-light btn modal-trigger" data-target="#noteModal{{this._id}}" data-id={{this._id}} (click)="openModal()">Add a Note</a>
+                    <button class="waves-effect waves-light btn delete" data-id={{this._id}}>Delete</button>
                 </div>
             </div>
             {{/each}} {{else}}
@@ -36,6 +33,4 @@
     </div>
 
     <!--Clicked Notes Modal-->
-    {{#each article}}
-    {{> notes-modal }}
-    {{/each}}
+    {{#each article}} {{> notes-modal }} {{/each}}
